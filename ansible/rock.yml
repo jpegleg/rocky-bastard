@@ -1,3 +1,13 @@
 ---
+- hosts: rocky
+  tasks:
+
+  - name: upgrade all packages
+    yum:
+      name: '*'
+      state: latest
+    tags:
+      - upgrade
+
 
 ...
