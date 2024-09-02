@@ -1,0 +1,9 @@
+[package]
+name = "genpkcs12"
+version = "0.1.0"
+edition = "2021"
+
+[dependencies]
+openssl = { version = "0.10", features = ["vendored"] }
+rand = "0.8"
+base64 = "0.13"
