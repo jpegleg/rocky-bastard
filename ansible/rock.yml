@@ -47,6 +47,13 @@
 
 - hosts: rocky   
   tasks:
+  
+  - name: fips check
+    shell: fips-mode-setup --check # if this fails, re-apply fips1.sh, reboot, then start over. rebuild server if needed
+      executable: /bin/sh
+    tags:
+      - fipscheck
+      - install
       
   - name: upgrade all packages
     yum:
