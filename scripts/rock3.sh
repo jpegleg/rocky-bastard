@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/usr/bin/env bash
 # execute remotely with $1 being the rocky bastard server to configure
 
 echo "$(date +%Y-%m-%dT%H:%M:%S)Z -      starting monolith initial deployment portion - rock3 "
