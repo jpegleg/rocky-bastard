@@ -33,7 +33,7 @@ ssh root@"$1" "chmod +x /usr/local/sbin/monolith && systemctl enable monolith &&
 
 echo "$(date +%Y-%m-%dT%H:%M:%S)Z - check for existing selinux file"
 EXISTY="$(ls my-monolith.pp || echo notfound)"
-if [[ $XISTY == "notfound" ]]; then
+if [[ $EXISTY == "notfound" ]]; then
   ssh root@"$1" "ausearch -c '(monolith)' --raw | audit2allow -M my-monolith && semodule -i my-monolith.pp && /sbin/restorecon -v /usr/local/sbin/monolith"
 else
   echo "$(date +%Y-%m-%dT%H:%M:%S)Z - existing selinux file found, continue..."
