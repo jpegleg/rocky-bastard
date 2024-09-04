@@ -1,7 +1,62 @@
 ---
-- hosts: rocky
+    
+- hosts: node1
+  vars:
+    newname: 
+    - 0013node1
+    
   tasks:
 
+  - name: set hostname
+    shell: "hostname {{ newname[0] }} && sed -i 's/vultr/{{ newname[0] }}/g' /etc/hosts && echo {{ newname[0] }} > /etc/hostname"
+    args:
+      executable: /bin/ash
+    tags: 
+      - hostname
+      - install
+...
+
+---
+    
+- hosts: node3
+  vars:
+    newname: 
+    - 0013node2
+    
+  tasks:
+
+  - name: set hostname
+    shell: "hostname {{ newname[1] }} && sed -i 's/vultr/{{ newname[1] }}/g' /etc/hosts && echo {{ newname[1] }} > /etc/hostname"
+    args:
+      executable: /bin/ash
+    tags: 
+      - hostname
+      - install
+...
+
+---
+    
+- hosts: node3
+  vars:
+    newname: 
+    - 1113node3
+    
+  tasks:
+
+  - name: set hostname
+    shell: "hostname {{ newname[2] }} && sed -i 's/vultr/{{ newname[2] }}/g' /etc/hosts && echo {{ newname[2] }} > /etc/hostname"
+    args:
+      executable: /bin/ash
+    tags: 
+      - hostname
+      - install
+...
+
+---
+
+- hosts: rocky   
+  tasks:
+      
   - name: upgrade all packages
     yum:
       name: '*'
@@ -51,11 +106,43 @@
       - aide
       - install
 
-  - name: install k3s
-    shell: yes | curl -sfL https://get.k3s.io | INSTALL_K3S_EXEC="server  --secrets-encryption --disable=metrics-server" sh -
-    args:
-      executable: /bin/ash
+  - name: set motd
+    copy:
+      src: files/motd
+      dest: /etc/motd
     tags: 
-      - k3s
+      - motd
       - install
+      
+  - name: deploy monolith
+    copy:
+      src: files/monolith
+      dest: /usr/local/sbin/
+    tags: 
+      - install
+      - monolith
+      - deploy
+
+  - name: deploy monolith systemd unit file
+    copy:
+      src: files/monolith.service
+      dest: /etc/systemd/system/monolith.service
+    tags: 
+      - install
+      - monolith
+      - deploy   
+
+  - name: initialize the monolith
+    shell: systemctl enable monolith && systemctl start monolith
+      executable: /bin/sh
+    tags:
+      - monolith
+      - deploy
+
+  - name: monolith firewall rules
+    shell: "firewall-cmd --zone=public --permanent --add-port=7443/tcp && firewall-cmd reload"
+      executable: /bin/sh
+    tags:
+      - monolith
+      - deploy      
 ...
