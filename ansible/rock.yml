@@ -96,13 +96,36 @@
     tags:
       - aide
       - install
-
+      
+  - name: make directories
+    shell: mkdir -p /opt/monolith/etc /etc/monolith
+      executable: /bin/sh
+    tags:
+      - monolith
+      - deploy
+      
   - name: set motd
     copy:
       src: files/motd
       dest: /etc/motd
     tags: 
       - motd
+      - install
+
+  - name: set pki_env
+    copy:
+      src: files/pki_env
+      dest: /etc/monolith/pki_env
+    tags: 
+      - monolith
+      - install 
+      
+  - name: deploy identity.p12
+    copy:
+      src: files/identity.p12
+      dest: /opt/monolith/etc/identity.p12
+    tags: 
+      - monolith
       - install
       
   - name: deploy monolith
