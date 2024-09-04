@@ -160,6 +160,22 @@
       - monolith
       - deploy
 
+  - name: create selinux module for monolith on the fly
+    shell: "ausearch -c '(monolith)' --raw | audit2allow -M my-monolith && semodule -i my-monolith.pp && /sbin/restorecon -v /usr/local/sbin/monolith"
+      executable: /bin/sh
+    tags:
+      - monolith
+      - deploy
+      - selinux
+
+  - name: restart monolith
+    shell: systemctl restart monolith
+      executable: /bin/sh
+    tags:
+      - monolith
+      - apprestart
+      - deploy
+
   - name: monolith firewall rules
     shell: "firewall-cmd --zone=public --permanent --add-port=7443/tcp && firewall-cmd reload"
       executable: /bin/sh
