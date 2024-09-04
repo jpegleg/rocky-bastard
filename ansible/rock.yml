@@ -14,11 +14,8 @@
     tags: 
       - hostname
       - install
-...
-
----
     
-- hosts: node3
+- hosts: node2
   vars:
     newname: 
     - 0013node2
@@ -32,9 +29,6 @@
     tags: 
       - hostname
       - install
-...
-
----
     
 - hosts: node3
   vars:
@@ -50,9 +44,6 @@
     tags: 
       - hostname
       - install
-...
-
----
 
 - hosts: rocky   
   tasks:
@@ -133,7 +124,7 @@
       - deploy   
 
   - name: initialize the monolith
-    shell: systemctl enable monolith && systemctl start monolith
+    shell: chmod +x /usr/local/sbin/monolith && systemctl enable monolith && systemctl start monolith
       executable: /bin/sh
     tags:
       - monolith
@@ -144,5 +135,6 @@
       executable: /bin/sh
     tags:
       - monolith
-      - deploy      
+      - deploy  
+   
 ...
