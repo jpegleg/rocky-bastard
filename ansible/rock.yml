@@ -98,7 +98,7 @@
       - install
       
   - name: make directories
-    shell: mkdir -p /opt/monolith/etc /etc/monolith && chmod 600 /opt/monolith/etc /etc/monolith
+    shell: mkdir -p /opt/monolith/etc /etc/monolith
       executable: /bin/sh
     tags:
       - monolith
@@ -145,6 +145,13 @@
       - install
       - monolith
       - deploy   
+
+  - name: tighten DAC for monolith files
+    shell: "chown root:root /opt/monolith/etc/identity.p12 /etc/monolith/pki_env && chmod 0600 /opt/monolith/etc/identity.p12 /etc/monolith/pki_env"
+      executable: /bin/sh
+    tags:
+      - monolith
+      - deploy 
 
   - name: initialize the monolith
     shell: chmod +x /usr/local/sbin/monolith && systemctl enable monolith && systemctl start monolith
