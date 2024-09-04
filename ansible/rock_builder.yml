@@ -1,0 +1,88 @@
+---
+- hosts: rockybuilder  # compiler node for CI
+  tasks:
+
+  - name: fips check
+    shell: fips-mode-setup --check # if this fails, re-apply fips1.sh, reboot, then start over. rebuild server if needed
+      executable: /bin/sh
+    tags:
+      - fipscheck
+      - install
+      
+  - name: upgrade all packages
+    yum:
+      name: '*'
+      state: latest
+    tags:
+      - upgrade
+      - patch
+
+  - name: install gcc
+    yum:
+      name: 'gcc'
+      state: latest
+    tags:
+      - upgrade
+      - patch 
+      - gcc
+
+  - name: install clang
+    yum:
+      name: 'clang'
+      state: latest
+    tags:
+      - upgrade
+      - patch 
+      - clang
+
+  - name: install perl
+    yum:
+      name: 'perl'
+      state: latest
+    tags:
+      - upgrade
+      - patch 
+      - perl
+
+  - name: install perl-IPC-Cmd
+    yum:
+      name: 'perl-IPC-Cmd'
+      state: latest
+    tags:
+      - upgrade
+      - patch 
+      - perl   
+
+  - name: install cmake
+    yum:
+      name: 'cmake'
+      state: latest
+    tags:
+      - upgrade
+      - patch 
+      - cmake   
+
+  - name: install openssl
+    yum:
+      name: 'openssl'
+      state: latest
+    tags:
+      - upgrade
+      - patch 
+      - openssl 
+
+  - name: download and install Go
+    shell: wget https://go.dev/dl/go1.23.0.linux-amd64.tar.gz && tar -C /usr/local -xzf go1.23.0.linux-amd64.tar.gz
+      executable: /bin/sh
+    tags:
+      - go
+      - install
+ 
+  - name: install rustup
+    shell: rustup update || curl https://sh.rustup.rs -sSf | sh -s -- -y
+      executable: /bin/sh
+    tags:
+      - rust
+      - install
+      
+...
