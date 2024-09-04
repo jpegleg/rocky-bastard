@@ -1,7 +1,7 @@
 #!/bin/sh
 # execute remotely with $1 being the rocky bastard server to configure
 
-echo "$(date +%Y-%m-%dT%H:%M:%S)Z        starting monolith initial deployment portion - rock3 "
+echo "$(date +%Y-%m-%dT%H:%M:%S)Z -      starting monolith initial deployment portion - rock3 "
 
 echo "$(date +%Y-%m-%dT%H:%M:%S)Z - printing hashes of deployment files/ "
 sha256sum files/*
@@ -36,9 +36,10 @@ EXISTY="$(ls my-monolith.pp || echo notfound)"
 if [[ $XISTY == "notfound" ]]; then
   ssh root@"$1" "ausearch -c '(monolith)' --raw | audit2allow -M my-monolith && semodule -i my-monolith.pp && /sbin/restorecon -v /usr/local/sbin/monolith"
 else
-  echo "existing selinux file found, continue..."
+  echo "$(date +%Y-%m-%dT%H:%M:%S)Z - existing selinux file found, continue..."
 fi
 
+echo "$(date +%Y-%m-%dT%H:%M:%S)Z - ended run of rock3 monolith deployment script"
 echo "$(date +%Y-%m-%dT%H:%M:%S)Z - restart monolith app"
 ssh root@"$1" "systemctl restart monolith"
 
