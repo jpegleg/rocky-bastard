@@ -8,7 +8,9 @@ More detailed documenting will be added to this file eventually.
 
 ## The Rocky Linux server configuration
 
-There is Anisble and shell script for the configurations. More will be added to these aspects soon!
+There is shell script for the configurations. Ansible was originally planned, but there were too many potential complications with FIPS compatibility, so Ansible was removed.
+
+More will be added to these aspects soon!
 
 ## The monolith template
 
