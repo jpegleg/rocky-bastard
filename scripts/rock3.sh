@@ -39,7 +39,6 @@ else
   echo "$(date +%Y-%m-%dT%H:%M:%S)Z - existing selinux file found, continue..."
 fi
 
-echo "$(date +%Y-%m-%dT%H:%M:%S)Z - ended run of rock3 monolith deployment script"
 echo "$(date +%Y-%m-%dT%H:%M:%S)Z - restart monolith app"
 ssh root@"$1" "systemctl restart monolith"
 
