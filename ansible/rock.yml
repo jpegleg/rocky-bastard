@@ -98,7 +98,7 @@
       - install
       
   - name: make directories
-    shell: mkdir -p /opt/monolith/etc /etc/monolith
+    shell: mkdir -p /opt/monolith/etc /etc/monolith && chmod 600 /opt/monolith/etc /etc/monolith
       executable: /bin/sh
     tags:
       - monolith
