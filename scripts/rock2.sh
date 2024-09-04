@@ -28,4 +28,4 @@ freshclam
 echo "$(date +%Y-%m-%dT%H:%M:%S)Z - make monolith app directories"
 mkdir -p /opt/monolith/etc /etc/monolith
 
-echo "$(date +%Y-%m-%dT%H:%M:%S)Z - ended rock1 run on $1"
+echo "$(date +%Y-%m-%dT%H:%M:%S)Z - ended rock2 initial configuration run on $1"
