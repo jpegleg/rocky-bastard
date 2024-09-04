@@ -8,6 +8,54 @@
       state: latest
     tags:
       - upgrade
+      - patch
 
+  - name: install aide
+    yum:
+      name: 'aide'
+      state: latest
+    tags:
+      - upgrade
+      - aide
+      - install
 
+  - name: install clamav
+    yum:
+      name: 'clamav'
+      state: latest
+    tags:
+      - upgrade
+      - clamav
+      - install
+
+  - name: install clamav-update
+    yum:
+      name: 'clamav-update'
+      state: latest
+    tags:
+      - upgrade
+      - clamav
+      - install
+
+  - name: run a freshclam
+    shell: freshclam
+      executable: /bin/sh
+    tags:
+      - clamav
+      - install
+      
+  - name: initialize aide
+    shell: aide --init
+      executable: /bin/sh
+    tags:
+      - aide
+      - install
+
+  - name: install k3s
+    shell: yes | curl -sfL https://get.k3s.io | INSTALL_K3S_EXEC="server  --secrets-encryption --disable=metrics-server" sh -
+    args:
+      executable: /bin/ash
+    tags: 
+      - k3s
+      - install
 ...
