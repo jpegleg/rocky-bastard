@@ -11,7 +11,7 @@ yum update
 echo "$(date +%Y-%m-%dT%H:%M:%S)Z - yum upgrade"
 yum upgrade
 
-echo "$(date +%Y-%m-%dT%H:%M:%S)Z - install aide gcc clang cmake perl perl-IPC-Cmd openssl"
+echo "$(date +%Y-%m-%dT%H:%M:%S)Z - install clamav aide gcc clang cmake perl perl-IPC-Cmd openssl"
 yum install clamav clamav-update aide gcc clang cmake perl perl-IPC-Cmd openssl -y
 
 echo "$(date +%Y-%m-%dT%H:%M:%S)Z - run an aide --init"
