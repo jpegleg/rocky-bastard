@@ -19,8 +19,9 @@ yum upgrade
 echo "$(date +%Y-%m-%dT%H:%M:%S)Z - install aide"
 yum install aide -y
 
-echo "$(date +%Y-%m-%dT%H:%M:%S)Z - run an aide --init"
+echo "$(date +%Y-%m-%dT%H:%M:%S)Z - run an aide --init and copy the new database over the live database"
 aide --init
+cp -p /var/lib/aide/aide.db.new.gz /var/lib/aide/aide.db.gz
 
 echo "$(date +%Y-%m-%dT%H:%M:%S)Z - make monolith app directories"
 mkdir -p /opt/monolith/etc /etc/monolith
