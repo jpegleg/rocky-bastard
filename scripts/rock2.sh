@@ -16,14 +16,11 @@ yum update
 echo "$(date +%Y-%m-%dT%H:%M:%S)Z - yum upgrade"
 yum upgrade
 
-echo "$(date +%Y-%m-%dT%H:%M:%S)Z - install clamav clamav-update and aide"
-yum install clamav clamav-update aide -y
+echo "$(date +%Y-%m-%dT%H:%M:%S)Z - install aide"
+yum install aide -y
 
 echo "$(date +%Y-%m-%dT%H:%M:%S)Z - run an aide --init"
 aide --init
-
-echo "$(date +%Y-%m-%dT%H:%M:%S)Z - run freshclam to download latest virus patterns"
-freshclam
 
 echo "$(date +%Y-%m-%dT%H:%M:%S)Z - make monolith app directories"
 mkdir -p /opt/monolith/etc /etc/monolith
