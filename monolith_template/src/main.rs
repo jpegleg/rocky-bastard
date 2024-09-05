@@ -12,7 +12,7 @@ fn load_tls_config() -> Result<ServerConfig, Box<dyn std::error::Error>> {
     aws_lc_rs::try_fips_mode().expect("Failed to initialize FIPS mode");
     rustls::crypto::aws_lc_rs::default_provider()
         .install_default()
-        .unwrap;
+        .unwrap();
     let pkcs12_path = env::var("PKCSPATH")?;
     let pkcs12_password = env::var("PKCSPASSWORD")?;
     let mut file = File::open(pkcs12_path)?;
@@ -28,9 +28,9 @@ fn load_tls_config() -> Result<ServerConfig, Box<dyn std::error::Error>> {
 
     let key = match pkey.id() {
         openssl::pkey::Id::RSA => PrivateKeyDer::Pkcs1(key_der.into()),
-        openssl::pkey::Id::EC => PrivateKeyDer::sec1(key_der.into()),
+        openssl::pkey::Id::EC => PrivateKeyDer::Sec1(key_der.into()),
         openssl::pkey::Id::ED25519 => PrivateKeyDer::Pkcs8(key_der.into()),
-        _ => return Err("unsupported key type".into()),
+        _ => return Err("Unsupported key type".into()),
     };
 
     let config = rustls::ServerConfig::builder()
