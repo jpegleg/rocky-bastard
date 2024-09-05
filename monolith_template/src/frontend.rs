@@ -1,5 +1,5 @@
 // module for frontend functionality
-HttpServer::new(|| App::new().configure(users::init_routes))
+
 use actix_web::{get, post, web, HttpResponse};
 use serde_json::json;
 use actix_web::HttpRequest;
