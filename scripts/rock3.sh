@@ -39,8 +39,8 @@ else
   echo "$(date +%Y-%m-%dT%H:%M:%S)Z - existing selinux file found, continue..."
 fi
 
-echo "$(date +%Y-%m-%dT%H:%M:%S)Z - restart monolith app"
-ssh root@"$1" "systemctl restart monolith"
+echo "$(date +%Y-%m-%dT%H:%M:%S)Z - restart monolith app and check for service"
+ssh root@"$1" "systemctl restart monolith && pgrep monolith || exit 1"
 
 echo "$(date +%Y-%m-%dT%H:%M:%S)Z - ensure port 443 is open in local firewall"
 ssh root@"$1" "firewall-cmd --zone=public --permanent --add-port=443/tcp && firewall-cmd --reload"
