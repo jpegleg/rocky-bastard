@@ -5,6 +5,7 @@ use std::fs::File;
 use std::io::Read;
 use aws_lc_rs;
 use openssl::pkcs12::Pkcs12;
+use rustls::pki_types::PrivateKeyDer;
 
 mod frontend;
 
