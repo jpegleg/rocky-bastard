@@ -6,6 +6,8 @@ use std::io::Read;
 use aws_lc_rs;
 use openssl::pkcs12::Pkcs12;
 
+mod frontend;
+
 fn load_tls_config() -> Result<ServerConfig, Box<dyn std::error::Error>> {
     aws_lc_rs::try_fips_mode().expect("Failed to initialize FIPS mode");
 
@@ -39,11 +41,8 @@ async fn main() -> std::io::Result<()> {
 
     let tls_config = load_tls_config().expect("Failed to load TLS config");
 
-    HttpServer::new(move || {
-        App::new()
-            .route("/", web::get().to(index))
-    })
-    .bind_rustls("0.0.0.0:7443", tls_config)?
-    .run()
-    .await
+    HttpServer::new(|| App::new().configure(frontend::init_routes))
+        .bind_rustls("0.0.0.0:443", tls_config)?
+        .run()
+        .await
 }
