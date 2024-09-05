@@ -32,7 +32,7 @@ echo "$(date +%Y-%m-%dT%H:%M:%S)Z - ssh exec set executable monolith, enable, an
 ssh root@"$1" "chmod +x /usr/local/sbin/monolith && systemctl enable monolith && systemctl start monolith"
 
 echo "$(date +%Y-%m-%dT%H:%M:%S)Z - check for existing selinux file"
-EXISTY="$(ls my-monolith.pp || echo notfound)"
+EXISTY=$(ssh root@$1 "ls my-monolith.pp || echo notfound" 2>/dev/null)
 if [[ $EXISTY == "notfound" ]]; then
   ssh root@"$1" "ausearch -c '(monolith)' --raw | audit2allow -M my-monolith && semodule -i my-monolith.pp && /sbin/restorecon -v /usr/local/sbin/monolith"
 else
@@ -43,6 +43,6 @@ echo "$(date +%Y-%m-%dT%H:%M:%S)Z - restart monolith app"
 ssh root@"$1" "systemctl restart monolith"
 
 echo "$(date +%Y-%m-%dT%H:%M:%S)Z - ensure monolith port is open in local firewall"
-ssh root@"$1" "firewall-cmd --zone=public --permanent --add-port=7443/tcp && firewall-cmd reload"
+ssh root@"$1" "firewall-cmd --zone=public --permanent --add-port=7443/tcp && firewall-cmd --reload"
 
 echo "$(date +%Y-%m-%dT%H:%M:%S)Z - ended run of rock3 deployment script"
