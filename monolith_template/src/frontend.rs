@@ -1,15 +1,13 @@
-// module for frontend functionality
+// module for frontend functionality template
 
-use actix_web::{get, post, web, HttpResponse};
-use serde_json::json;
+use actix_web::{get, web, HttpResponse};
 use actix_web::HttpRequest;
+use actix_web::http::Error;
 use chrono::Utc;
 use chrono::DateTime;
 
-mod backend;
-
 #[get("/health")]
-async fn healthchecks(req: HttpRequest) -> Result<HttpResponse, CustomError> {
+async fn healthchecks(req: HttpRequest) -> Result<HttpResponse, Error> {
     let peer = req.peer_addr();
     let requ = req.headers();
     let readi: DateTime<Utc> = Utc::now();
@@ -19,7 +17,7 @@ async fn healthchecks(req: HttpRequest) -> Result<HttpResponse, CustomError> {
 }
 
 #[get("/")]
-async fn reg(req: HttpRequest) -> Result<HttpResponse, CustomError> {
+async fn reg(req: HttpRequest) -> Result<HttpResponse, Error> {
     let peer = req.peer_addr();
     let requ = req.headers();
     let readi: DateTime<Utc> = Utc::now();
@@ -28,18 +26,7 @@ async fn reg(req: HttpRequest) -> Result<HttpResponse, CustomError> {
     Ok(HttpResponse::Ok())
 }
 
-#[post("/api")]
-async fn api(req: HttpRequest) -> Result<HttpResponse, CustomError> {
-    let peer = req.peer_addr();
-    let requ = req.headers();
-    let readi: DateTime<Utc> = Utc::now();
-    println!("[{:?} INFO ] - - API POST request - from {:?} - {:?}", readi, peer, &requ);
-    let hresp = "DO BACKEND MODULE FUNCTIONS HERE";
-    Ok(HttpResponse::Ok().json(hresp))
-}
-
 pub fn init_routes(config: &mut web::ServiceConfig) {
     config.service(health);
-    config.service(api);
     config.service(reg);
 }
