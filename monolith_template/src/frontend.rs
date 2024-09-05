@@ -23,10 +23,10 @@ async fn reg(req: HttpRequest) -> Result<HttpResponse, Error> {
     let readi: DateTime<Utc> = Utc::now();
     println!("[{:?} INFO ] - - / GET (customer flow) request - from {:?} - {:?}", readi, peer, &requ);
     let _hresp = "DO LOGIN AND ACCOUNT FLOW HERE";
-    Ok(HttpResponse::Ok())
+    Ok(HttpResponse::Ok().into())
 }
 
 pub fn init_routes(config: &mut web::ServiceConfig) {
-    config.service(health);
+    config.service(healthchecks);
     config.service(reg);
 }
