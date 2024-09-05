@@ -42,7 +42,7 @@ fi
 echo "$(date +%Y-%m-%dT%H:%M:%S)Z - restart monolith app"
 ssh root@"$1" "systemctl restart monolith"
 
-echo "$(date +%Y-%m-%dT%H:%M:%S)Z - ensure monolith port is open in local firewall"
-ssh root@"$1" "firewall-cmd --zone=public --permanent --add-port=7443/tcp && firewall-cmd --reload"
+echo "$(date +%Y-%m-%dT%H:%M:%S)Z - ensure port 443 is open in local firewall"
+ssh root@"$1" "firewall-cmd --zone=public --permanent --add-port=443/tcp && firewall-cmd --reload"
 
 echo "$(date +%Y-%m-%dT%H:%M:%S)Z - ended run of rock3 deployment script"
