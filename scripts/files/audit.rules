@@ -1,0 +1,33 @@
+## First rule - delete all
+-D
+
+## Increase the buffers to survive stress events.
+## Make this bigger for busy systems
+-b 8192
+
+## This determine how long to wait in burst of events
+--backlog_wait_time 60000
+
+## Set failure mode to syslog
+-f 1
+
+## Set rules here
+-a exit,always -S unlink -S rmdir
+-a exit,always -S stime.*
+-a exit,always -S setrlimit.*
+-w /etc/monolith -p wa
+-w /etc/rancher -p wa
+-w /bin -p wa
+-w /usr -p wa
+-w /boot -p wa
+-w /etc/group -p wa
+-w /etc/passwd -p wa
+-w /etc/shadow -p wa
+-w /etc/sudoers -p wa
+-a exit,always -S execve
+
+#  END section
+#Enable auditd
+-e 1
+##Make the configuration immutable, a reboot is required to change the configuration settings or rulesets.
+-e 2
