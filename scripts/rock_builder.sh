@@ -29,4 +29,7 @@ wget https://github.com/golang-fips/go/archive/refs/tags/go1.22.5-2-openssl-fips
 echo "$(date +%Y-%m-%dT%H:%M:%S)Z - install rustup to latest stable cargo"
 rustup update || curl https://sh.rustup.rs -sSf | sh -s -- -y
 
+echo "$(date +%Y-%m-%dT%H:%M:%S)Z - download YARA-X source code"
+git clone https://github.com/VirusTotal/yara-x
+
 echo "$(date +%Y-%m-%dT%H:%M:%S)Z - ended rock builder node setup script"
