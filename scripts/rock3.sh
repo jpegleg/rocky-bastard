@@ -56,7 +56,7 @@ echo "$(date +%Y-%m-%dT%H:%M:%S)Z - make new grub config"
 ssh root@"$1" "grub2-mkconfig"
 
 echo "$(date +%Y-%m-%dT%H:%M:%S)Z - change ssh port to 5959"
-ssh root@"$1" "sh /root/port-changer.sh 'Port 5959' '\Port 2299'"
+ssh root@"$1" "sh /root/port-changer.sh 5959 2299"
 
 echo "$(date +%Y-%m-%dT%H:%M:%S)Z - reboot to load with new kernel settings"
 ssh root@"$1" "reboot"
