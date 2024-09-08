@@ -88,7 +88,7 @@ fn review(file_path: &str)  {
      println!("  \"Group\": \"{} (gid: {})\",", group, gid);
 
      if file_is_open {
-         println!(" \"Open\": \"File is currently open by another program...\",");
+         println!("  \"Open\": \"File is currently open by another program...\",");
      } else {
          println!("  \"Open\": \"File is not open by another program.\",");
      }
