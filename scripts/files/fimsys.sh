@@ -1,0 +1,16 @@
+fimtargets=(
+ "/etc/hosts"
+ "/etc/ssh/sshd_config"
+ "/bin/bash"
+ "/bin/sh"
+ "/etc/timezone"
+ "/etc/profile"
+ "/etc/timezone"
+ "/etc/sysctl.conf"
+ "/vmlinuz"
+ "/initrd.img"
+ "/etc/passwd"
+ "/etc/shadow"
+ "/boot/grub/grub.cfg"
+ "/root/.bashrc"
+)
