@@ -28,4 +28,4 @@ LoginGraceTime 30
 MaxStartups 2
 TCPKeepAlive yes
 AcceptEnv LANG LC_*
-Subsystem sftp /usr/lib/ssh/sftp-server -f AUTHPRIV -l INFO
+Subsystem sftp internal-sftp
