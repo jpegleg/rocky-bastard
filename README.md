@@ -31,7 +31,7 @@ This JSON can then be used via centralized logging systems, event correlation sy
 λ fms /etc/hosts
 {
 "/etc/hosts": {
-  "CHECKSUM SHA3 SHAKE256 10": "[19, 201, 192, 220, 228, 35, 92, 58, 245, 201]",
+  "Checksum SHA3 SHAKE256 10": "[19, 201, 192, 220, 228, 35, 92, 58, 245, 201]",
   "Report time": "2024-09-08 01:12:04.827931248 UTC",
   "Number of IO blocks": "8",
   "Block size": "4096",
