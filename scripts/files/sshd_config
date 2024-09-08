@@ -1,0 +1,31 @@
+Protocol 2
+StrictModes yes
+Port 2299
+Ciphers aes256-gcm@openssh.com
+MACs hmac-sha2-512-etm@openssh.com
+PermitRootLogin yes
+MaxAuthTries 5
+MaxSessions 2
+PasswordAuthentication yes
+PermitEmptyPasswords no
+IgnoreRhosts yes
+HostbasedAuthentication no
+ChallengeResponseAuthentication no
+X11Forwarding no
+LogLevel VERBOSE
+SyslogFacility AUTH
+UseDNS no
+PermitTunnel no
+AllowTcpForwarding no
+AllowStreamLocalForwarding no
+GatewayPorts no
+AllowAgentForwarding no
+Banner /etc/motd
+PrintLastLog yes
+ClientAliveInterval 900
+ClientAliveCountMax 0
+LoginGraceTime 30
+MaxStartups 2
+TCPKeepAlive yes
+AcceptEnv LANG LC_*
+Subsystem sftp /usr/lib/ssh/sftp-server -f AUTHPRIV -l INFO
