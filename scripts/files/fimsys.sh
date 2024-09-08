@@ -5,7 +5,6 @@ fimtargets=(
  "/bin/sh"
  "/etc/timezone"
  "/etc/profile"
- "/etc/timezone"
  "/etc/sysctl.conf"
  "/vmlinuz"
  "/initrd.img"
