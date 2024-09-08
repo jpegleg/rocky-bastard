@@ -60,6 +60,8 @@ and the "fms" program can still serve great value. The "byte distribution" and "
 values are very granular metadata in combination with modified time can be strong indications
 of tampering.
 
+Also see https://github.com/jpegleg/dwarven-toolbox/ `review` as the upstream version of fms.
+
 Additional scripting or programs that wrap around "fms" are typically used to create a full solution.
 A script for this purpose is included: `fim.sh` is a wrapper for fms that executes fms against targets
 defined in `fimsys.sh`, writing the output to syslog (logger) and json files to the disk in `/opt/fimsyscheck`.
