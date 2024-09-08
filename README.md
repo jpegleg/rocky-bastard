@@ -24,8 +24,10 @@ the appropriate PKI systems.
 
 # "fms" (file metadata syscheck), for FIM functionality
 
-The CLI tool "fms" is a fast way to collect detailed metadata on files and output a JSON.
-The fms program collects DAC information, such as permissions and ownership, and also reports
+The CLI tool "fms" is a fast way to collect detailed metadata on files and output JSON.
+This JSON can then be used via centralized logging systems, even correlation systems, HIDS, XDR, and so on.
+
+The fms program collects UNIX information, such as permissions and ownership, and also reports
 on inode, size, date, unix metadata (but not selinux data), as well as a SHA3 SHAKE256 checksum.
 If there is an issue/risk for certification with the SHA3 code, then it can be safely cut
 and the "fms" program can still serve great value. The "byte distribution" and "bit count" metdata
