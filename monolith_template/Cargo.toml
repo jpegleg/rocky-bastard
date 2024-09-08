@@ -9,7 +9,6 @@ rustls = { version = "0.23", features = [ "fips" ] }
 rustls-webpki = { version = "0.102.7", features = ["aws_lc_rs"] }
 rustls-pemfile = "2"
 aws-lc-rs = { version = "1.0", features = ["fips"] }
-tokio = { version = "1", features = ["full"] }
 env_logger = "0.10"
 log = "0.4"
 openssl = { version = "0.10", features = ["vendored"] }
