@@ -19,6 +19,18 @@ ssh root@"$1" "tar czvf /root/$(hostname)_backup_cfg_$(date +%Y-%m-%dT%H:%M:%S)Z
 echo "$(date +%Y-%m-%dT%H:%M:%S)Z - copy out sysctl.conf file"
 scp files/sysctl.conf root@"$1":/etc/sysctl.conf
 
+echo "$(date +%Y-%m-%dT%H:%M:%S)Z - copy out fimsys.sh"
+scp files/fimsys.sh root@"$1":/root/fimsys.sh
+
+echo "$(date +%Y-%m-%dT%H:%M:%S)Z - copy out fim.sh"
+scp files/fim.sh root@"$1":/root/fim.sh
+
+echo "$(date +%Y-%m-%dT%H:%M:%S)Z - copy out port-changer.sh"
+scp files/port-changer.sh root@"$1":/root/port-changer.sh
+
+echo "$(date +%Y-%m-%dT%H:%M:%S)Z - copy out sshd config file"
+scp files/sshd_config root@"$1":/etc/ssh/sshd_config
+
 echo "$(date +%Y-%m-%dT%H:%M:%S)Z - copy out auditd rules base file"
 scp files/audit.rules root@"$1":/etc/audit/rules.d/audit.rules
 
@@ -42,6 +54,9 @@ ssh root@"$1" "chown root:root /opt/monolith/etc/identity.p12 /etc/monolith/pki_
 
 echo "$(date +%Y-%m-%dT%H:%M:%S)Z - make new grub config"
 ssh root@"$1" "grub2-mkconfig"
+
+echo "$(date +%Y-%m-%dT%H:%M:%S)Z - change ssh port to 5959"
+ssh root@"$1" "sh /root/port-changer.sh 'Port 5959' '\Port 2299'"
 
 echo "$(date +%Y-%m-%dT%H:%M:%S)Z - reboot to load with new kernel settings"
 ssh root@"$1" "reboot"
