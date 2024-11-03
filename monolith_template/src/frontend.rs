@@ -7,7 +7,7 @@ use chrono::Utc;
 use chrono::DateTime;
 
 // bring in each backend with a mod somebackendwhatever; 
-//mod yourbackend; // backend/yourbackend.rs <- the functionalities in there
+//mod frontend; // frontend/yourbackend.rs <- the functionalities in there
 
 #[get("/health")]
 async fn healthchecks(req: HttpRequest) -> Result<HttpResponse, Error> {
