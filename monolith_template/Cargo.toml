@@ -4,7 +4,7 @@ version = "0.1.0"
 edition = "2021"
 
 [dependencies]
-actix-web = { version = "4.3", features = ["rustls"] }
+actix-web = { version = "4.3", features = ["rustls", "rustls-0_23"] }
 rustls = { version = "0.23", features = [ "fips" ] }
 rustls-webpki = { version = "0.102.7", features = ["aws_lc_rs"] }
 rustls-pemfile = "2"
