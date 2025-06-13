@@ -2,9 +2,9 @@
 
 # rocky-bastard
 
-This is a monorepo of tools, services, and configurations for running (Rocky Linux) based systems and a rust monolith in FIPS mode.
+This is a monorepo of tools, services, and configurations for running (Rocky Linux 9) based systems and a rust monolith in FIPS mode.
 
-More detailed documenting will be added to this file eventually.
+Rocky Linux 10 requires different mechanisms for FIPS mode, so not all of these setup scripts apply for Rocky Linux 10.
 
 ## The Rocky Linux server configuration
 
